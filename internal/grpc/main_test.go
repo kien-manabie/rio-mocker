@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hungdv136/rio/internal/test"
+	"github.com/kien-manabie/rio-mocker/internal/test"
 )
 
 func TestMain(m *testing.M) {

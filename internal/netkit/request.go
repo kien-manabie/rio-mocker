@@ -9,11 +9,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/hungdv136/rio/internal/types"
-	"github.com/hungdv136/rio/internal/util"
+	"github.com/kien-manabie/rio-mocker/internal/types"
+	"github.com/kien-manabie/rio-mocker/internal/util"
 
 	"github.com/google/uuid"
-	"github.com/hungdv136/rio/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/log"
 )
 
 var defaultClient = &http.Client{

@@ -4,9 +4,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/hungdv136/rio"
-	"github.com/hungdv136/rio/internal/config"
-	"github.com/hungdv136/rio/internal/log"
+	"github.com/kien-manabie/rio-mocker"
+	"github.com/kien-manabie/rio-mocker/internal/config"
+	"github.com/kien-manabie/rio-mocker/internal/log"
 	"gorm.io/gorm"
 )
 

@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/hungdv136/rio/internal/log"
-	fs "github.com/hungdv136/rio/internal/storage"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	fs "github.com/kien-manabie/rio-mocker/internal/storage"
 	"github.com/stretchr/testify/require"
 )
 

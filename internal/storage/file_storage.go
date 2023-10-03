@@ -11,7 +11,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/hungdv136/rio/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/log"
 )
 
 var _ FileStorage = (*LocalStorage)(nil)

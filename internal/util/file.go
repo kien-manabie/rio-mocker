@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/hungdv136/rio/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/log"
 )
 
 // Unzip decompress a file into an output directory

@@ -4,8 +4,8 @@ import (
 	"context"
 	"flag"
 
-	"github.com/hungdv136/rio/internal/config"
-	"github.com/hungdv136/rio/internal/database"
+	"github.com/kien-manabie/rio-mocker/internal/config"
+	"github.com/kien-manabie/rio-mocker/internal/database"
 )
 
 func main() {

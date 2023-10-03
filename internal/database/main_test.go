@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/hungdv136/rio"
-	"github.com/hungdv136/rio/internal/config"
+	"github.com/kien-manabie/rio-mocker"
+	"github.com/kien-manabie/rio-mocker/internal/config"
 )
 
 func TestMain(m *testing.M) {

@@ -6,9 +6,9 @@ import (
 
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
-	"github.com/hungdv136/rio"
-	"github.com/hungdv136/rio/internal/config"
-	"github.com/hungdv136/rio/internal/test/mock"
+	"github.com/kien-manabie/rio-mocker"
+	"github.com/kien-manabie/rio-mocker/internal/config"
+	"github.com/kien-manabie/rio-mocker/internal/test/mock"
 	"github.com/stretchr/testify/require"
 )
 

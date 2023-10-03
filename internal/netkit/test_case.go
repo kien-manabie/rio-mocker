@@ -8,8 +8,8 @@ import (
 	"testing"
 
 	"github.com/gin-gonic/gin"
-	"github.com/hungdv136/rio/internal/log"
-	"github.com/hungdv136/rio/internal/types"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/types"
 	"github.com/stretchr/testify/require"
 )
 

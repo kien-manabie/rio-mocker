@@ -9,7 +9,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/hungdv136/rio/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/log"
 )
 
 // Defines request content types

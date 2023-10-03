@@ -10,7 +10,7 @@ import "common/v1/common.proto";
 import "common/v1/promotion.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/hungdv136/rio/internal/evo_intercom/gen/go/offers/v1";
+option go_package = "github.com/kien-manabie/rio-mocker/internal/evo_intercom/gen/go/offers/v1";
 
 message CampaignOfferRequest {
   string campaign_id = 1;

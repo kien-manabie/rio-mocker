@@ -7,11 +7,11 @@ import (
 
 	"github.com/golang/protobuf/jsonpb" //nolint:staticcheck
 	"github.com/golang/protobuf/proto"  //nolint:staticcheck
-	"github.com/hungdv136/rio"
-	"github.com/hungdv136/rio/internal/log"
-	"github.com/hungdv136/rio/internal/types"
 	"github.com/jhump/protoreflect/desc"
 	"github.com/jhump/protoreflect/dynamic"
+	"github.com/kien-manabie/rio-mocker"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

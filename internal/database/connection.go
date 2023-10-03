@@ -6,9 +6,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/hungdv136/rio/internal/config"
-	"github.com/hungdv136/rio/internal/log"
-	"github.com/uptrace/opentelemetry-go-extra/otelgorm"
+	"github.com/kien-manabie/rio-mocker/internal/config"
+	"github.com/kien-manabie/rio-mocker/internal/log"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -53,10 +52,10 @@ func Connect(ctx context.Context, config *config.MySQLConfig) (*gorm.DB, error) 
 	sqlDB.SetMaxOpenConns(config.MaxOpenConnections)
 
 	if config.EnableTracing {
-		if err = db.WithContext(ctx).Use(otelgorm.NewPlugin(otelgorm.WithDBName(config.Schema))); err != nil {
-			log.Error(ctx, "cannot enable tracing for gorm", config.Schema)
-			return nil, err
-		}
+		// if err = db.WithContext(ctx).Use(otelgorm.NewPlugin(otelgorm.WithDBName(config.Schema))); err != nil {
+		// 	log.Error(ctx, "cannot enable tracing for gorm", config.Schema)
+		// 	return nil, err
+		// }
 	}
 
 	log.Info(ctx, "connected to database", config.Schema)

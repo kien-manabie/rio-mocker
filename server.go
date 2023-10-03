@@ -9,11 +9,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/hungdv136/rio/internal/log"
-	"github.com/hungdv136/rio/internal/netkit"
-	fs "github.com/hungdv136/rio/internal/storage"
-	"github.com/hungdv136/rio/internal/types"
-	"github.com/hungdv136/rio/internal/util"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/netkit"
+	fs "github.com/kien-manabie/rio-mocker/internal/storage"
+	"github.com/kien-manabie/rio-mocker/internal/types"
+	"github.com/kien-manabie/rio-mocker/internal/util"
 )
 
 const (

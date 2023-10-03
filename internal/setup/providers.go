@@ -3,11 +3,11 @@ package setup
 import (
 	"context"
 
-	"github.com/hungdv136/rio"
-	"github.com/hungdv136/rio/internal/cache"
-	"github.com/hungdv136/rio/internal/config"
-	"github.com/hungdv136/rio/internal/database"
-	fs "github.com/hungdv136/rio/internal/storage"
+	"github.com/kien-manabie/rio-mocker"
+	"github.com/kien-manabie/rio-mocker/internal/cache"
+	"github.com/kien-manabie/rio-mocker/internal/config"
+	"github.com/kien-manabie/rio-mocker/internal/database"
+	fs "github.com/kien-manabie/rio-mocker/internal/storage"
 )
 
 func ProvideStubStore(ctx context.Context, cfg *config.Config) (rio.StubStore, error) {

@@ -9,11 +9,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/hungdv136/rio/internal/log"
-	fs "github.com/hungdv136/rio/internal/storage"
-	"github.com/hungdv136/rio/internal/util"
 	"github.com/jhump/protoreflect/desc"
 	"github.com/jhump/protoreflect/desc/protoparse"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	fs "github.com/kien-manabie/rio-mocker/internal/storage"
+	"github.com/kien-manabie/rio-mocker/internal/util"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

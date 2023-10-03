@@ -6,9 +6,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/hungdv136/rio"
-	"github.com/hungdv136/rio/internal/log"
-	fs "github.com/hungdv136/rio/internal/storage"
+	"github.com/kien-manabie/rio-mocker"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	fs "github.com/kien-manabie/rio-mocker/internal/storage"
 	"google.golang.org/grpc"
 	_ "google.golang.org/grpc/encoding/gzip" // blank import for gzip decompress
 	health "google.golang.org/grpc/health/grpc_health_v1"

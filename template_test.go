@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/hungdv136/rio/internal/types"
+	"github.com/kien-manabie/rio-mocker/internal/types"
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
 )

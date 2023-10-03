@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hungdv136/rio/internal/util"
+	"github.com/kien-manabie/rio-mocker/internal/util"
 )
 
 var _ StubStore = (*StubMemory)(nil)

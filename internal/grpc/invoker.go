@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hungdv136/rio/internal/log"
-	"github.com/hungdv136/rio/internal/util"
 	"github.com/jhump/protoreflect/desc"
 	"github.com/jhump/protoreflect/dynamic"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/util"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/hungdv136/rio/internal/log"
-	"github.com/hungdv136/rio/internal/util"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/util"
 )
 
 var matchingFunctions = map[OperatorName]matchingFunc{

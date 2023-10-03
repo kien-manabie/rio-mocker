@@ -12,12 +12,12 @@ import (
 
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
-	"github.com/hungdv136/rio"
-	"github.com/hungdv136/rio/internal/config"
-	"github.com/hungdv136/rio/internal/netkit"
-	"github.com/hungdv136/rio/internal/test"
-	"github.com/hungdv136/rio/internal/test/mock"
-	"github.com/hungdv136/rio/internal/types"
+	"github.com/kien-manabie/rio-mocker"
+	"github.com/kien-manabie/rio-mocker/internal/config"
+	"github.com/kien-manabie/rio-mocker/internal/netkit"
+	"github.com/kien-manabie/rio-mocker/internal/test"
+	"github.com/kien-manabie/rio-mocker/internal/test/mock"
+	"github.com/kien-manabie/rio-mocker/internal/types"
 	"github.com/stretchr/testify/require"
 )
 

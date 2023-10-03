@@ -1,8 +1,8 @@
 # A flexible declarative HTTP mocking framework in Golang
 
-![ci](https://github.com/hungdv136/rio/workflows/ci/badge.svg)
-[![Go Report Card](https://goreportcard.com/badge/github.com/hungdv136/rio)](https://goreportcard.com/report/github.com/hungdv136/rio)
-[![Go Reference](https://pkg.go.dev/badge/github.com/hungdv136/rio.svg)](https://pkg.go.dev/github.com/hungdv136/rio)
+![ci](https://github.com/kien-manabie/rio-mocker/workflows/ci/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kien-manabie/rio-mocker)](https://goreportcard.com/report/github.com/kien-manabie/rio-mocker)
+[![Go Reference](https://pkg.go.dev/badge/github.com/kien-manabie/rio-mocker.svg)](https://pkg.go.dev/github.com/kien-manabie/rio-mocker)
 
 - [A lightweight declarative HTTP mocking framework in Golang](#a-lightweight-declarative-http-mocking-framework-in-golang)
   - [Introduction](#introduction)
@@ -69,7 +69,7 @@ Rio is a declarative HTTP mocking library for unit test in Golang and HTTP/gPRC 
 
 ## Features
 
-- Fast, simple and fluent API for unit test in Golang 
+- Fast, simple and fluent API for unit test in Golang
 - DSL in YAML/JSON format for stub declarations
 - Supports wide-range response types (html, xml, json and binary)
 - Can be deployed as mock server (HTTP and gRPC) for integration test
@@ -123,16 +123,16 @@ Golang 1.18+
 ### Install
 
 ```bash
-go get github.com/hungdv136/rio@latest
+go get github.com/kien-manabie/rio-mocker@latest
 ```
 
 No deployment is required for unit test
 
-### Usage 
+### Usage
 
 Write unit test with Golang
 
-```go 
+```go
 func TestCallAPI(t *testing.T) {
 	t.Parallel()
 
@@ -186,13 +186,13 @@ func TestCallAPI(t *testing.T) {
 
 ```
 
-[Examples](https://github.com/hungdv136/rio_examples)
+[Examples](https://github.com/kien-manabie/rio-mocker_examples)
 
 ## How to use in integration test
 
 Suppose that we want to test (manual or automation) an API that calls an external API by simulating a mock response for that external API. It can help us to create stable tests by isolating our test suites with external systems
 
-Golang, TypeScript, Postman can be used to define and submit stubs to mock server. [This repository](https://github.com/hungdv136/rio-js) illustrates how to use Rio to write integration tests in Javascript/TypeScript
+Golang, TypeScript, Postman can be used to define and submit stubs to mock server. [This repository](https://github.com/kien-manabie/rio-mocker-js) illustrates how to use Rio to write integration tests in Javascript/TypeScript
 
 ### Deploy `Rio` as a stand-alone service
 
@@ -202,7 +202,7 @@ See [deploy](#how-to-deploy). After deployed, Rio can be accessed by other servi
 
 Go to ENV management system to change the root URL to the mock server with the format: `http://rio-domain/echo` (Must include **`/echo`** at the end)
 
-### Perform manual test case 
+### Perform manual test case
 
 1. [Use Postman to submit stubs](#create-stubs-using-postman)
 2. Use Postman to perform manual test with your API
@@ -213,7 +213,7 @@ Go to ENV management system to change the root URL to the mock server with the f
 
 This struct is used to connect with the remote server that we have deployed above, so we should provide the root url of that mock server when initializing the remote server struct
 
-```go 
+```go
 server := rio.NewRemoteServer("http://rio-server")
 ```
 
@@ -267,17 +267,19 @@ NewStub().For("GET", Contains("/helloworld"))
 ```
 
 ```ts
-new Stub("GET", Rule.contains("/helloworld"))
+new Stub("GET", Rule.contains("/helloworld"));
 ```
 
 ```json
 {
   "request": {
     "method": "GET",
-    "url": [{
-      "name": "contains",
-      "value": "/helloworld"
-    }]
+    "url": [
+      {
+        "name": "contains",
+        "value": "/helloworld"
+      }
+    ]
   }
 }
 ```
@@ -289,19 +291,23 @@ NewStub().WithQuery("search_term", NotEmpty())
 ```
 
 ```ts
-new Stub("GET", Rule.contains("/helloworld"))
-  .withQuery("search_term", Rule.notEmpty())
+new Stub("GET", Rule.contains("/helloworld")).withQuery(
+  "search_term",
+  Rule.notEmpty()
+);
 ```
 
 ```json
 {
   "request": {
-    "query": [{
-      "field_name": "search_term",
-      "operator": {
-        "name": "not_empty"
+    "query": [
+      {
+        "field_name": "search_term",
+        "operator": {
+          "name": "not_empty"
+        }
       }
-    }]
+    ]
   }
 }
 ```
@@ -313,20 +319,24 @@ NewStub().WithCookie("SESSION_ID", EqualTo("expected cookie value"))
 ```
 
 ```ts
-new Stub("GET", Rule.contains("/helloworld"))
-  .withCookie("SESSION_ID", Rule.equalsTo("expected cookie value"))
+new Stub("GET", Rule.contains("/helloworld")).withCookie(
+  "SESSION_ID",
+  Rule.equalsTo("expected cookie value")
+);
 ```
 
 ```json
 {
   "request": {
-    "cookie": [{
-      "field_name": "SESSION_ID",
-      "operator": {
-        "name": "equal_to",
-        "value": "expected cookie value"
+    "cookie": [
+      {
+        "field_name": "SESSION_ID",
+        "operator": {
+          "name": "equal_to",
+          "value": "expected cookie value"
+        }
       }
-    }]
+    ]
   }
 }
 ```
@@ -340,28 +350,29 @@ NewStub().WithRequestBody(BodyJSONPath("$.name"), NotEmpty())
 ```
 
 ```ts
-new Stub('GET', Rule.endWith('/helloworld'))
-  .withRequestBody(
-    JSONPathRule("$.name", Rule.notEmpty()),
-    JSONPathRule("$.count", Rule.equalsTo(3000))
-  )
+new Stub("GET", Rule.endWith("/helloworld")).withRequestBody(
+  JSONPathRule("$.name", Rule.notEmpty()),
+  JSONPathRule("$.count", Rule.equalsTo(3000))
+);
 ```
 
 ```json
 {
   "request": {
-    "body": [{
-      "content_type":  "application/json",
-      "operator": {
-        "name": "not_empty"
-      },
-      "key_path": "$.name"
-    }] 
+    "body": [
+      {
+        "content_type": "application/json",
+        "operator": {
+          "name": "not_empty"
+        },
+        "key_path": "$.name"
+      }
+    ]
   }
 }
 ```
 
-#### XML Path 
+#### XML Path
 
 ```go
 NewStub().WithRequestBody(BodyXMLPath("//book/title"), NotEmpty())
@@ -370,87 +381,91 @@ NewStub().WithRequestBody(BodyXMLPath("//book/title"), NotEmpty())
 ```json
 {
   "request": {
-    "body": [{
-      "content_type":  "text/xml",
-      "operator": {
-        "name": "not_empty"
-      },
-      "key_path": "//book/title"
-    }] 
+    "body": [
+      {
+        "content_type": "text/xml",
+        "operator": {
+          "name": "not_empty"
+        },
+        "key_path": "//book/title"
+      }
+    ]
   }
 }
 ```
 
-#### Multipart 
+#### Multipart
 
 ```go
 NewStub().WithRequestBody(MultipartForm("field_name"), NotEmpty())
 ```
 
 ```ts
-new Stub('GET', Rule.endWith('/helloworld'))
-  .withRequestBody(
-    MultiPartFormRule("field_name", Rule.notEmpty())
-  )
+new Stub("GET", Rule.endWith("/helloworld")).withRequestBody(
+  MultiPartFormRule("field_name", Rule.notEmpty())
+);
 ```
 
 ```json
 {
   "request": {
-    "body": [{
-      "content_type":  "multipart/form-data",
-      "operator": {
-        "name": "not_empty"
-      },
-      "key_path": "field_name"
-    }] 
+    "body": [
+      {
+        "content_type": "multipart/form-data",
+        "operator": {
+          "name": "not_empty"
+        },
+        "key_path": "field_name"
+      }
+    ]
   }
 }
 ```
 
-#### URL Encoded Form (application/x-www-form-urlencoded) 
+#### URL Encoded Form (application/x-www-form-urlencoded)
 
 ```go
 NewStub().WithRequestBody(URLEncodedBody("CustomerID", EqualTo("352461777")))
 ```
 
 ```ts
-new Stub('GET', Rule.endWith('/helloworld'))
-  .withRequestBody(
-    URLEncodedBodyRule("CustomerID", Rule.equalsTo("352461777"))
-  )
+new Stub("GET", Rule.endWith("/helloworld")).withRequestBody(
+  URLEncodedBodyRule("CustomerID", Rule.equalsTo("352461777"))
+);
 ```
 
 ```json
 {
   "request": {
-    "body": [{
-      "content_type":  "application/x-www-form-urlencoded",
-      "operator": {
-        "name": "equal_to",
-        "value": "352461777"
-      },
-      "key_path": "CustomerID"
-    }] 
+    "body": [
+      {
+        "content_type": "application/x-www-form-urlencoded",
+        "operator": {
+          "name": "equal_to",
+          "value": "352461777"
+        },
+        "key_path": "CustomerID"
+      }
+    ]
   }
 }
 ```
 
 ### Matching Operators
 
-See [operator](https://github.com/hungdv136/rio/blob/main/operator.go) for supported operators which can be used for any matching types including method, url, headers. cookies and bodies
+See [operator](https://github.com/kien-manabie/rio-mocker/blob/main/operator.go) for supported operators which can be used for any matching types including method, url, headers. cookies and bodies
 
-| DSL | Golang | TypeScript | Description |
-| --- | ------ | ---------- | ----------- |
-| contains | rio.Contains | Rule.contains | Checks whether actual value contains given value in parameter |
-| not_contains | rio.NotContains | Rule.notContains | Checks whether actual value contains given value in parameter |
-| regex | rio.Regex | Rule.regex | Checks whether actual value matches with given regex in parameter |
-| equal_to | rio.EqualTo | Rule.equalsTo | Determines if two objects are considered equal. Works as require.Equal |
-| start_with | rio.StartWith | Rule.startWith | Tests whether the string begins with prefix. Support string only |
-| end_with | rio.EndWith | Rule.endWith | Tests whether the string begins with prefix. Support string only |
-| length | rio.Length | Rule.withLength | Checks length of object. Support string or array |
-| empty | rio.Empty | Rule.empty | Check whether the specified object is considered empty. Works as require.Empty |
-| not_empty | rio.NotEmpty | Rule.notEmpty | Check whether the specified object is considered not empty. Works as require.NotEmpty |
+| DSL          | Golang          | TypeScript       | Description                                                                           |
+| ------------ | --------------- | ---------------- | ------------------------------------------------------------------------------------- |
+| contains     | rio.Contains    | Rule.contains    | Checks whether actual value contains given value in parameter                         |
+| not_contains | rio.NotContains | Rule.notContains | Checks whether actual value contains given value in parameter                         |
+| regex        | rio.Regex       | Rule.regex       | Checks whether actual value matches with given regex in parameter                     |
+| equal_to     | rio.EqualTo     | Rule.equalsTo    | Determines if two objects are considered equal. Works as require.Equal                |
+| start_with   | rio.StartWith   | Rule.startWith   | Tests whether the string begins with prefix. Support string only                      |
+| end_with     | rio.EndWith     | Rule.endWith     | Tests whether the string begins with prefix. Support string only                      |
+| length       | rio.Length      | Rule.withLength  | Checks length of object. Support string or array                                      |
+| empty        | rio.Empty       | Rule.empty       | Check whether the specified object is considered empty. Works as require.Empty        |
+| not_empty    | rio.NotEmpty    | Rule.notEmpty    | Check whether the specified object is considered not empty. Works as require.NotEmpty |
 
 ## Response Definition
 
@@ -461,13 +476,13 @@ rio.NewResponse().WithStatusCode(400).WithHeader("KEY", "VALUE")
 ```
 
 ```ts
-new StubResponse().withStatusCode(400).withHeader("KEY", "VALUE")
+new StubResponse().withStatusCode(400).withHeader("KEY", "VALUE");
 ```
 
 The below are convenient functions to create response with common response content types
 
 ```go
-// JSON 
+// JSON
 rio.JSONReponse(body)
 
 // XML
@@ -478,14 +493,14 @@ rio.HTMLReponse(body)
 ```
 
 ```ts
-// JSON 
-JSONReponse({fieldName: 'value'})
+// JSON
+JSONReponse({ fieldName: "value" });
 
 // XML
-XMLReponse(`<xml></xml>`)
+XMLReponse(`<xml></xml>`);
 
 // HTML
-HTMLReponse(`<html></html>`)
+HTMLReponse(`<html></html>`);
 ```
 
 ### Status Code, Cookies, Header
@@ -514,11 +529,13 @@ new Stub('GET', Rule.contains('/path')).withReturn(resStub)
     "body": {
       "key": "value"
     },
-    "cookies": [{
-      "name": "SESSION_ID",
-      "value": "4e1c0c4d-b7d4-449e-882e-f1be825f1d27",
-      "expired_at": "2023-01-07T12:26:01.59694+07:00"
-    }],
+    "cookies": [
+      {
+        "name": "SESSION_ID",
+        "value": "4e1c0c4d-b7d4-449e-882e-f1be825f1d27",
+        "expired_at": "2023-01-07T12:26:01.59694+07:00"
+      }
+    ],
     "header": {
       "Content-Type": "application/json"
     },
@@ -559,7 +576,7 @@ await new Stub("POST", Rule.contains("animal/create"))
 }
 ```
 
-#### XML 
+#### XML
 
 Use XMLResponse to construct response with XML
 
@@ -623,10 +640,10 @@ NewStub().WithReturn(NewResponse().WithFileBody(fileID))
 ```
 
 ```ts
-const server = Server('http://<mock-server>');
-const fileID = await server.uploadFile('/<path/to/file>');
+const server = Server("http://<mock-server>");
+const fileID = await server.uploadFile("/<path/to/file>");
 
-new Stub().withReturn(new StubResponse().withFileBody(fileID))
+new Stub().withReturn(new StubResponse().withFileBody(fileID));
 ```
 
 ```json
@@ -681,9 +698,9 @@ rio.NewStub().
 ```
 
 ```ts
-new Stub('', Rule.contains("reverse_recording/animal/create"))
+new Stub("", Rule.contains("reverse_recording/animal/create"))
   .withTargetURL(targetURL)
-  .withEnableRecord(true)
+  .withEnableRecord(true);
 ```
 
 ```json
@@ -705,7 +722,7 @@ The server will create a new inactive stub into database as the recorded result.
 server := NewRemoteServer("http://mock-server")
 ```
 
-2. Upload file 
+2. Upload file
 
 ```go
 b, err := os.ReadFile(filePath)
@@ -717,7 +734,7 @@ require.NoError(t, err)
 
 We can upload file using rest for integration test `POST {rio-domain}/upload`
 
-3. Create a stub 
+3. Create a stub
 
 ```go
 resStub := NewResponse().WithFileBody("image/jpeg", fileID)
@@ -748,7 +765,7 @@ defer res.Body.Close()
 
 See [Swagger](docs/swagger.yaml) for API specifications
 
-### JSON Format 
+### JSON Format
 
 The stubs (matching rules and the expected response) can be created through Rest API `stubs/create_many`, the below is example of body payload
 
@@ -762,9 +779,9 @@ The stubs (matching rules and the expected response) can be created through Rest
       "request": {
         "body": [
           {
-            "content_type":"application/json",
+            "content_type": "application/json",
             "key_path": "$.book.type",
-             "operator": {
+            "operator": {
               "name": "equal_to",
               "value": "How to write test in Golang"
             }
@@ -810,11 +827,13 @@ The stubs (matching rules and the expected response) can be created through Rest
           "key": "value"
         },
         "body_file": "",
-        "cookies": [{
-          "name": "SESSION_ID",
-          "value": "4e1c0c4d-b7d4-449e-882e-f1be825f1d27",
-          "expired_at": "2023-01-07T12:26:01.59694+07:00"
-        }],
+        "cookies": [
+          {
+            "name": "SESSION_ID",
+            "value": "4e1c0c4d-b7d4-449e-882e-f1be825f1d27",
+            "expired_at": "2023-01-07T12:26:01.59694+07:00"
+          }
+        ],
         "header": {
           "Content-Type": "application/json"
         },
@@ -830,7 +849,7 @@ The stubs (matching rules and the expected response) can be created through Rest
 }
 ```
 
-### YAML 
+### YAML
 
 If the response body is not JSON such as XML, or HTML. It is hard to use submit stub with JSON format since JSON does not support multiple lines. In that case, we should use YAML as the following example. Remember to add `Content-Type=application/x-yaml` (This is header of submit request, it is not header of the expected response)
 
@@ -867,12 +886,12 @@ stubs:
     response:
       template:
         status_code: 200
-        header: 
+        header:
           Content-Type: text/html
         body: >
-            <html>
-              This is HTML body type
-            </html>
+          <html>
+            This is HTML body type
+          </html>
     settings:
       deactivate_when_matched: false
       delay_duration: 0s
@@ -906,7 +925,7 @@ lowPriority := NewStub().
 
 ```json
 {
-   "weight": 10
+  "weight": 10
 }
 ```
 
@@ -919,7 +938,7 @@ NewStub().For("GET", Contains("animal/create")).ShouldDelay(3 * time.Second)
 ```
 
 ```ts
-new Stub("GET", Rule.contains("animal/create")).shouldDelay(3000)
+new Stub("GET", Rule.contains("animal/create")).shouldDelay(3000);
 ```
 
 ```json
@@ -952,9 +971,8 @@ NewStub().For("GET", Contains("animal/create")).ShouldDeactivateWhenMatched().Wi
 The namespace can be used to separate data between test case. This is helpful when a single mock server is used for many features and projects. Use this pattern as the root url `http://rio.mock.com/<namespace>/echo`. For example, we want to separate test stubs for payment_service and lead service, then set the root url for those service as below
 
 - Payment Service Root URL: `http://rio.mock.com/payment_service/echo`
-  
 - Lead Service Root URL: `http://rio.mock.com/lead_service/echo`
-   
+
 If this url is used `http://rio.mock.com.com/echo`, then default namespace (empty) will be used
 
 ### Dynamic response
@@ -1004,29 +1022,29 @@ stubs:
       template:
         script_schema_type: yaml
         script: >
-            status_code: 200
-            
-            cookies: 
-                {{ range $cookie := .Request.Cookies }}
-                - name: {{ $cookie.Name }}
-                  value: {{ $cookie.Value }}
-                {{end}}
+          status_code: 200
 
-            headers:
-                X-REQUEST-ID: {{ .Request.Header.Get "X-REQUEST-ID"}} 
-            
-            body: >
-                {
-                    "encrypted_value": "{{ encryptAES "e09b3cc3b4943e2558d1882c9ef999eb" .JSONBody.naked_value}}"
-                }
+          cookies: 
+              {{ range $cookie := .Request.Cookies }}
+              - name: {{ $cookie.Name }}
+                value: {{ $cookie.Value }}
+              {{end}}
+
+          headers:
+              X-REQUEST-ID: {{ .Request.Header.Get "X-REQUEST-ID"}} 
+
+          body: >
+              {
+                  "encrypted_value": "{{ encryptAES "e09b3cc3b4943e2558d1882c9ef999eb" .JSONBody.naked_value}}"
+              }
     settings:
       deactivate_when_matched: false
       delay_duration: 0s
     weight: 0
 ```
 
-Example for template in TypeScript [this file](https://github.com/hungdv136/rio-js/blob/main/example/sdk-install.test.ts)
- 
+Example for template in TypeScript [this file](https://github.com/kien-manabie/rio-mocker-js/blob/main/example/sdk-install.test.ts)
+
 ## Mocking GRPC
 
 Mocking grpc is mostly the same as mocking HTTP, the following are some minor differences. Currently, only Unary is supported. Even this gRPC mocking can be used with unit test, we recommend that we should not use it for unit test since it is not right way to do unit test with gPRC
@@ -1049,10 +1067,12 @@ Define stub for grpc the same as for HTTP mock with the following differences
 {
   "request": {
     "method": "grpc",
-    "url": [{
-      "name": "equal_to",
-      "value": "/offers.v1.OfferService/ValidateOffer"
-    }]
+    "url": [
+      {
+        "name": "equal_to",
+        "value": "/offers.v1.OfferService/ValidateOffer"
+      }
+    ]
   },
   "response": {
     "status_code": 0,
@@ -1068,27 +1088,31 @@ Define stub for grpc the same as for HTTP mock with the following differences
 
 The response body is in JSON format. You can enable proxy with recording or look at the generated proto structure to know the response structure
 
-### Mocking GRPC error response 
+### Mocking GRPC error response
 
 ```json
 {
   "request": {
     "method": "grpc",
-    "url": [{
-      "name": "equal_to",
-      "value": "/offers.v1.OfferService/ValidateOffer"
-    }]
+    "url": [
+      {
+        "name": "equal_to",
+        "value": "/offers.v1.OfferService/ValidateOffer"
+      }
+    ]
   },
   "response": {
     "status_code": 3,
     "error": {
       "message": "This is error message",
-      "details": [{
-        "type": "common.v1.CommonError",
-        "value": {
-          "verdict": "record_not_found"
+      "details": [
+        {
+          "type": "common.v1.CommonError",
+          "value": {
+            "verdict": "record_not_found"
+          }
         }
-      }]
+      ]
     }
   }
 }
@@ -1099,14 +1123,14 @@ The response body is in JSON format. You can enable proxy with recording or look
 
 ### Change the root url to rio
 
-Note that the root does not contains `/echo/` as HTTP mock, also namespace is not supported yet 
+Note that the root does not contains `/echo/` as HTTP mock, also namespace is not supported yet
 
 ## How to deploy
 
 This is to deploy remote mock server. These steps are not required for unit test
 
 ### Setup database
-  
+
 Supported databases: MySQL or MariaDB
 
 ```env
@@ -1115,7 +1139,7 @@ DB_USER=<user>
 DB_PASSWORD=<password>
 ```
 
-### Deploy file storage 
+### Deploy file storage
 
 If LocalStorageType is used then `Rio` can only be deployed with single instance. The GRPC and HTTP services must access to the same directory that is defined in ENV `FILE_DIR`. If we want to deploy Rio as a cluster with multiple instances, then GCS or S3 must be used as file storage
 
@@ -1143,7 +1167,7 @@ This is required even we want to use GRPC mock only because HTTP server is not o
 
 This is optional. The GRPC is to serve mock GRPC requests. If you just want to use HTTP mock, then can skip this step
 
-### Configure cache 
+### Configure cache
 
 The below are default configuration for cache. If we want to change cache TTL or change cache strategy, then adjust the following env. Otherwise, can ignore these configurations
 

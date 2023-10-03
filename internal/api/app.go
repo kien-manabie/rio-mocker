@@ -6,11 +6,11 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/hungdv136/rio"
-	"github.com/hungdv136/rio/internal/config"
-	"github.com/hungdv136/rio/internal/log"
-	"github.com/hungdv136/rio/internal/setup"
-	fs "github.com/hungdv136/rio/internal/storage"
+	"github.com/kien-manabie/rio-mocker"
+	"github.com/kien-manabie/rio-mocker/internal/config"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/setup"
+	fs "github.com/kien-manabie/rio-mocker/internal/storage"
 )
 
 type AppOption func(*App)

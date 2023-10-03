@@ -6,7 +6,7 @@ import "common/v1/common.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/hungdv136/rio/internal/evo_intercom/gen/go/common/v1";
+option go_package = "github.com/kien-manabie/rio-mocker/internal/evo_intercom/gen/go/common/v1";
 
 message CampaignPromotion {
   int64 discount_amount = 1;

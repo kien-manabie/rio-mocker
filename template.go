@@ -10,8 +10,8 @@ import (
 	"text/template"
 
 	"github.com/Masterminds/sprig/v3"
-	"github.com/hungdv136/rio/internal/log"
-	"github.com/hungdv136/rio/internal/types"
+	"github.com/kien-manabie/rio-mocker/internal/log"
+	"github.com/kien-manabie/rio-mocker/internal/types"
 	"gopkg.in/yaml.v3"
 )
 
